@@ -1,0 +1,73 @@
+﻿@model IEnumerable<PianoStoreProject.Models.OrderViewModel>
+
+@{
+	ViewData["Title"] = "Orders";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section class="listing mt-5 mb-5">
+	<div class="feat_title text" id="">
+		<h1><u> - 	<i class="fa fa-shopping-cart"></i> Orders - </u></h1>
+	</div>
+	<br />
+	<!-- Shopping Cart -->
+	<div id="section-cart">
+		<div class="row mt-5 mb-5">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>
+							@Html.DisplayNameFor(model => model.OrderId)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.SubTotal)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.ShippingCharges)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.TotalAmount)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Datetime)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.status)
+						</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model)
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.OrderId)
+							</td>
+							<td>
+								£ @Html.DisplayFor(modelItem => item.SubTotal)
+							</td>
+							<td>
+								£ @Html.DisplayFor(modelItem => item.ShippingCharges)
+							</td>
+							<td>
+								£ @Html.DisplayFor(modelItem => item.TotalAmount)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Datetime)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.status)
+							</td>
+							<td>
+								<a href="/Cart/OrderDetail?OrderId=@item.OrderId"><i class="fa fa-bars" aria-hidden="true"></i></a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!--/ End Shopping Cart -->
+</section>
+
+

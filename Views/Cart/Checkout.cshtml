@@ -1,0 +1,85 @@
+﻿@model PianoStoreProject.Models.OrderViewModel
+
+@{
+	ViewData["Title"] = "Checkout";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/identity.css" />
+
+
+<section class="listing mt-5 mb-5">
+	<div class="feat_title text" id="">
+		<h1><u> - 	<i class="fa fa-shopping-cart"></i> Checkout - </u></h1><br />
+		<p>Please fill the required shipping details and click on submit button.</p>
+	</div>	<br />
+	<br />
+<div class="row">
+	<div class="column-8">
+		<form class="input-group" id="login" method="post" asp-action="Checkout" asp-controller="Cart" >
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<input asp-for="FirstName" class="input-field1 input-width-100" placeholder="Enter First Name" />
+			<br />
+			<input asp-for="LastName" class="input-field1 input-width-100" placeholder="Enter Last Name" />
+			<br />
+			<input asp-for="Address" class="input-field1 input-width-100" placeholder="Enter Address" />
+			<br />
+			<input asp-for="City" class="input-field1 input-width-100" placeholder="Enter City" />
+			<br />
+			<input asp-for="State" class="input-field1 input-width-100" placeholder="Enter State" />
+			<br />
+			<input asp-for="Country" class="input-field1 input-width-100" placeholder="Enter Country" />
+			<br />
+			<input asp-for="PostalCode" class="input-field1 input-width-100" placeholder="Enter Postal Code" />
+			<br />
+			<input asp-for="Phone" class="input-field1 input-width-100" placeholder="Enter Phone Number" />
+			<br />
+				<br />
+			<button type="submit" class="btn-checkout">Submit</button>
+			<br /><br />
+
+			<br />
+		</form>
+	</div>
+	<div class="column-2">
+		<table class="table table-bordered">
+			<tbody>
+				<tr>
+					<td>
+						Sub Total:
+					</td>
+					<td>
+						£ @Model.TotalAmount
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Shipping Charges:
+					</td>
+					<td>
+						£ 0
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Total Amount:
+					</td>
+					<td>
+						£ @Model.TotalAmount
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+</section>
+
+
+
+
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+<script src="~/assets/Javascript/sign_in.js"></script>
+<script src="https://use.fontawesome.com/99202a12ad.js"></script>
+}

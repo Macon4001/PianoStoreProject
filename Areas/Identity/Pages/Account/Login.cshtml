@@ -1,0 +1,44 @@
+﻿@page
+@model LoginModel
+
+@{
+	ViewData["Title"] = "Log in";
+}
+<link rel="stylesheet" href="~/css/identity.css" />
+<section class="container-SI">
+	<div class="form-box">
+		<img src="~/assets/Photos/logo3.jpg" class="Frost Sounds" />
+		<div class="button-box">
+			<div id="btn4">
+				<a asp-area="Identity" asp-page="/Account/Login" class="btn5"> Log-in</a>
+				<a asp-area="Identity" asp-page="/Account/Register" class="btn5"> Register</a>
+			</div>
+			<form class="input-group" id="login" method="post">
+				<div asp-validation-summary="All" class="text-danger"></div>
+				<input asp-for="Input.Email" class="input-field1" placeholder="Enter your Email" />
+				<br />
+				<input asp-for="Input.Password" class="input-field" placeholder="Enter your Password" />
+				<br /><br />
+				<label asp-for="Input.RememberMe">
+					<input asp-for="Input.RememberMe" />
+					@Html.DisplayNameFor(m => m.Input.RememberMe)
+				</label>
+				<br />
+				<button type="submit" class="btn">Log in</button>
+				<br />
+				<p>
+					<a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+				</p>
+				<p>
+					<a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+				</p>
+			</form>
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+<script src="~/assets/Javascript/sign_in.js"></script>
+<script src="https://use.fontawesome.com/99202a12ad.js"></script>
+}

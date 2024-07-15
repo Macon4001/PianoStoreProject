@@ -1,0 +1,74 @@
+﻿@model IEnumerable<PianoStoreProject.Models.OrderViewModel>
+
+
+<div class="row">
+	<div class="col-md-12">
+		<table class="table table-bordered table-hover" id="tblOrders">
+			<thead>
+				<tr>
+					<th>
+						Order ID
+					</th>
+					<th>
+						Customer
+					</th>
+					<th>
+						Amount Paid
+					</th>
+					<th>
+						Order Date
+					</th>
+					<th>
+						Status
+					</th>
+					<th>
+						Actions
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				@{
+					int i = 0;
+				}
+				@foreach (var item in Model)
+				{
+					<tr>
+						<td>
+							@Html.DisplayFor(modelItem => item.OrderId)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => item.FirstName)   @Html.DisplayFor(modelItem => item.LastName)
+						</td>
+						<td>
+							£ @Html.DisplayFor(modelItem => item.TotalAmount)
+						</td>
+
+						<td>
+							@Html.DisplayFor(modelItem => item.Datetime)
+						</td>
+						<td>
+							@Html.Raw(item.status)
+						</td>
+						<td>
+							<a href="Javascript:void(0);" onclick="Manage.initConfirmOrder(@item.OrderId)" title="Confirm Order"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a> |
+							<a href="/Cart/OrderDetail?OrderId=@item.OrderId" title="View Order Items"><i class="fa fa-bars" aria-hidden="true"></i></a>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function () {
+		$("#tblOrders").DataTable({
+			destroy: true,
+			aaSorting: [],
+			"ordering": false,
+			"bSort": false,
+			"bSortable": false,
+			"orderable": false,
+		})
+	});
+</script>

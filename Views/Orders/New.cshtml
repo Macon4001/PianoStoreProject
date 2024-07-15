@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "New";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<script src="~/Plugins/Manage.js"></script>
+<div class="card ">
+    <div class="card-header">
+        <h4 class="card-title">NEW ORDERS</h4>
+        <hr>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 mt-2" id="section-orders">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        Manage.initNewOrders();
+    });
+</script>

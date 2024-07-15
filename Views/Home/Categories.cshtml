@@ -1,0 +1,17 @@
+﻿@using PianoStoreProject.Repositories;
+@inject ICategoryRepository CategoryProvider;
+@{
+	ViewData["Title"] = "Categories";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="products">
+	@foreach (var item in CategoryProvider.GetAllCategories())
+	{
+		<div class="product-1" id="text">
+			<img class="prod-img-1" src="@item.CategoryImageUrl" alt="@item.CategoryName">
+			<h2>@item.CategoryName</h2>
+			<a href="/Home/Products?Id=@item.Id" class="btn3">Browse Now &#8594;</a>
+		</div>
+	}
+</main>

@@ -1,0 +1,28 @@
+﻿/*.truncate {*/
+/*width: 1%;*/
+/* white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+*/
+/* width: 75% !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;*/
+
+
+
+/*width: 30% !important;
+    max-width: 30% !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}*/
+
+.truncated {
+    max-width: 5% !important;
+    width: 5% !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: inline-block !important;
+}

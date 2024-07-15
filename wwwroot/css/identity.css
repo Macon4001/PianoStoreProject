@@ -1,0 +1,12 @@
+﻿.text-danger {
+    color: #dc3545 !important;
+}
+
+.container-SI {
+    position: inherit !important;
+    margin-bottom: 50px !important;
+}
+
+li {
+    display: block;
+}

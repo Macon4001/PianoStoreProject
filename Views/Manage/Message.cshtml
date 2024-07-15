@@ -1,0 +1,34 @@
+﻿@model PianoStoreProject.Models.ContactViewModel
+@{
+    ViewData["Title"] = "Message";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 ml-auto mr-auto">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Subject: @Model.Subject</h4><hr />
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12 mt-1">
+                        <p class="card-text">
+                            @Model.Message
+                            <br /><br />
+                            <b>Name: @Model.Name</b><br />
+                            <b>Email: @Model.Email</b><br />
+                            <b>Contact: @Model.PhoneNo</b><br />
+                            <b>Dated: @Model.Datetime</b>
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="/Manage/Emails" class="btn btn-default btn-round">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

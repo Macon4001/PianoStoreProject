@@ -1,0 +1,68 @@
+﻿@model IEnumerable<PianoStoreProject.Models.NotificationViewModel>
+
+<style>
+    .truncato {
+        width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>
+
+<div class="table-responsive">
+    <table class="display nowrap table table-hover table-bordered " cellspacing="0" width="100%" id="tblNotification">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotificationMessage)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NotificationUrl)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int i = 0;}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @(i = i + 1)
+                    </td>
+                    <td>
+                        <p class="truncato"> @Html.DisplayFor(modelItem => item.NotificationMessage)</p>
+                    </td>
+                    <td>
+                        <p class="truncato"> @Html.DisplayFor(modelItem => item.NotificationUrl)</p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <a href="/Manage/EditNotification?Id=@item.Id" title="Edit Notification"><i class="fa fa-edit" aria-hidden="true"></i></a> |
+                        <a href="Javascript:void(0);" title="Delete Notification" onclick="Notification.initDeleteNotification('@item.Id')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#tblNotification").DataTable({
+            destroy: true,
+            aaSorting: [],
+            "ordering": false,
+            "bSort": false,
+            "bSortable": false,
+            "orderable": false,
+        })
+    });
+</script>

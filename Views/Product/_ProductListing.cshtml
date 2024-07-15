@@ -1,0 +1,60 @@
+﻿@model IEnumerable<PianoStoreProject.Models.ProductViewModel>
+
+<table class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%" id="tblProducts">
+	<thead>
+		<tr>
+			<th>
+				#
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ProductName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Category)
+			</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+	<tbody>
+		@{
+			int i = 0;
+		}
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@(i = i + 1)
+				</td>
+				<td>
+					<div class="media">
+						<img src="@item.ImageUrl" class="mr-3" alt="@item.ProductName" width="64">
+						<div class="media-body">
+							<h5 class="mt-0 mb-0">@item.ProductName</h5>
+						</div>
+					</div>
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Category)
+				</td>
+				<td>
+					<a href="/Product/Detail?Id=@item.Id" title="Product Detail"><i class="fa fa-bars" aria-hidden="true"></i></a> |
+					<a href="/Product/Edit?Id=@item.Id" title="Edit Product"><i class="fa fa-edit" aria-hidden="true"></i></a> |
+					<a href="Javascript:void(0);" title="Delete Product" onclick="Products.initDeleteProduct('@item.Id')"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+<script type="text/javascript">
+	$(function () {
+		$("#tblProducts").DataTable({
+			destroy: true,
+			aaSorting: [],
+			"ordering": false,
+			"bSort": false,
+			"bSortable": false,
+			"orderable": false,
+		})
+	});
+</script>

@@ -1,0 +1,49 @@
+﻿@model PianoStoreProject.Models.ProductViewModel
+
+@{
+	ViewData["Title"] = "Detail";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="CP-container mt-5 mb-5">
+	<div class="column-7">
+		<img src="@Model.ImageUrl" id="img1"><br />
+	</div>
+	<div id="myBackdrop" class="Backdrop">
+		<span class="close">&times;</span>
+		<img class="Backdrop-content" id="img01">
+		<div id="caption"> long day </div>
+	</div>
+	<div class="column-8" id="text">
+		<p>@Model.Category</p>
+		<h1>@Model.ProductName  </h1>
+		<h2>£@Model.Price</h2>
+		<p>@Model.Description</p>
+		<br />
+		<form asp-controller="Cart" asp-action="AddToCart" data-ajax-method="POST" data-ajax="true" id="OrderForm" enctype="multipart/form-data" data-ajax-success="Cart.initCartSuccess">
+			<input type="hidden" id="ProductId" name="ProductId" value="@Model.Id" />
+			<input type="hidden" asp-for="Id" />
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<button type="submit" class="btn">Add to Cart &#8594;</button>
+		</form>
+	</div>
+</section>
+<main class="products products-detail">
+	@foreach (var item in Model.Images)
+	{
+		<div class="product-1 display-img" id="text">
+			<a href="Javascript:void(0)" data-src="@item" onclick="ChangeImg(this);"><img class="prod-img-5" src="@item" /></a>
+		</div>
+	}
+</main>
+
+@section Scripts{
+<script src="~/assets/Javascript/product_animation.js" defer></script>
+<script type="text/javascript">
+	function ChangeImg($this){
+		$("#img1").attr("src",$($this).attr("data-src"));
+	}
+</script>
+<script type="text/javascript" src="~/Plugins/Cart.js"></script>
+
+}

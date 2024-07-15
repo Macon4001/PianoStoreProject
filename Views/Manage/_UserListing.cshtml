@@ -1,0 +1,67 @@
+﻿@model IEnumerable<PianoStoreProject.Models.UsersDetailDto>
+    <div class="table-responsive">
+        <table id="tblUsers" class="display nowrap table table-hover table-bordered " cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>
+                        User Name
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RoleName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedDate)
+                    </th>
+                    <th>
+                        Confirmed
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.Raw(item.RoleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            @Html.Raw(item.EmailConfirmed)
+                        </td>
+                        <td>
+                            @Html.Raw(item.status)
+                        </td>
+                        <td>
+                            <a href='/Manage/Role?id=@item.Id' title='Edit Role'><i class='fa fa-edit' aria-hidden='true'></i></a> |
+                            <a href='Javascript:void(0);' data-toggle='tooltip' data-placement='bottom' title='Delete User' data-original-title='Delete User' onclick="Users.initDeleteUser('@item.Id');"><i class='fa fa-trash' aria-hidden="true"></i></a> |
+                            <a href='Javascript:void(0);' title='Block User' onclick="Users.initBlockUser('@item.Id','@item.blocked');"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $("#tblUsers").DataTable({
+                destroy: true,
+                "columnDefs": [{ "width": "20%", "targets": 1 }]
+            });
+        });
+    </script>

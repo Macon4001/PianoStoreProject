@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Notifications";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<link href="~/css/Notification.css" rel="stylesheet" />
+
+<div class="card ">
+	<div class="card-header">
+		<h4 class="card-title">Notifications</h4>
+		<hr>
+	</div>
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-12">
+				<a href="/Manage/AddNotification" class="btn btn-outline-primary btn-round"><i class="fa fa-plus"></i> Add New</a>
+			</div>
+			<div class="col-md-12 mt-2" id="section-notification">
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts{
+<script src="~/Plugins/Notification.js"></script>
+<script type="text/javascript">
+	$(function () {
+		Notification.initBindNotification();
+	});
+</script>
+}

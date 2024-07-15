@@ -1,0 +1,53 @@
+﻿@model PianoStoreProject.Models.ManagedEmailViewModel
+@{
+    ViewData["Title"] = "Mails";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 ml-auto mr-auto">
+        <form asp-action="AddOrUpdateEmail" asp-controller="Manage" data-ajax="true" data-ajax-method="POST" data-ajax-success="Mail.initSuccess">
+            <div class="card ">
+                <div class="card-header ">
+                    <h4 class="card-title">Manage Email Addresses</h4>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-group row">
+                                    <label asp-for="ContactEmailAddress" class="control-label col-md-3"></label>
+                                    <div class="col-md-9">
+                                        <input asp-for="ContactEmailAddress" class="form-control" />
+                                        <span asp-validation-for="ContactEmailAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="NotificationEmailAddress" class="control-label col-md-3"></label>
+                                    <div class="col-md-9">
+                                        <input asp-for="NotificationEmailAddress" class="form-control" />
+                                        <span asp-validation-for="NotificationEmailAddress" class="text-danger"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <div class="col-md-3"></div>
+                                    <div class="col-md-9">
+                                        <input type="submit" value="Save" class="btn btn-primary btn-round" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Plugins/Mail.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

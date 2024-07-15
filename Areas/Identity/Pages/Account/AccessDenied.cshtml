@@ -1,0 +1,26 @@
+﻿@page
+@model AccessDeniedModel
+@{
+	ViewData["Title"] = "Access denied";
+}
+
+
+
+<link rel="stylesheet" href="~/css/identity.css" />
+<section class="container-SI">
+	<div class="form-box">
+		<img src="~/assets/Photos/logo3.jpg" class="Frost Sounds" />
+		<div class="button-box">
+			<div id="btn4">
+				<a asp-area="Identity" asp-page="/Account/Login" class="btn5"> Log-in</a>
+				<a asp-area="Identity" asp-page="/Account/Register" class="btn5"> Register</a>
+			</div>
+			<div class="input-group" id="login">
+				<header>
+					<h1 class="text-danger">@ViewData["Title"]</h1>
+					<p class="text-danger">You do not have access to this resource.</p>
+				</header>
+			</div>
+		</div>
+	</div>
+</section>

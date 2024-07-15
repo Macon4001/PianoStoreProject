@@ -1,0 +1,50 @@
+﻿@model PianoStoreProject.Models.ContactViewModel
+@{
+	ViewData["Title"] = "Contact";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/identity.css" />
+
+
+<section class="listing mt-5 mb-5">
+	<div class="feat_title text" id="">
+		<h1><u> -  Contact US - </u></h1><br />
+		<p>Write us a message.</p>
+	</div>	<br />
+	<br />
+	<div class="row">
+		<div class="column-8">
+			<form asp-action="Contact" class="form" asp-controller="Home" data-ajax-method="POST" data-ajax="true" data-ajax-success="Request.initSuccess" id="RequestForm">
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div class="alert alert-success hide" id="txtMessage">
+					<strong>Success!</strong> Your message sent successfully. We will soon contact you.
+				</div>
+				<input asp-for="Name" class="input-field1 input-width-100" placeholder="Enter Name" />
+				<br />
+				<input asp-for="Email" class="input-field1 input-width-100" placeholder="Enter Email" />
+				<br />
+				<input asp-for="PhoneNo" class="input-field1 input-width-100" placeholder="Enter Phone Number" />
+				<br />
+				<input asp-for="Subject" class="input-field1 input-width-100" placeholder="Write Subject" />
+				<br />
+				<textarea asp-for="Message" class="input-field1 input-width-100" placeholder="Write your message"></textarea>
+
+				<br />
+				<br />
+				<button type="submit" class="btn-checkout">Send Message</button>
+				<br /><br />
+
+				<br />
+			</form>
+		</div>
+	</div>
+</section>
+
+
+
+@section Scripts{
+<script src="~/Plugins/Request.js"></script>
+<partial name="_ValidationScriptsPartial" />
+<script src="~/assets/Javascript/sign_in.js"></script>
+<script src="https://use.fontawesome.com/99202a12ad.js"></script>
+	}

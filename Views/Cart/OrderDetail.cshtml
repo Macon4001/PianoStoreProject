@@ -1,0 +1,142 @@
+﻿@model PianoStoreProject.Models.OrderViewModel
+
+@{
+	ViewData["Title"] = "Order Detail";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="listing mt-5 mb-5">
+	<div class="feat_title text" id="">
+		<h1><u> - 	<i class="fa fa-shopping-cart"></i> Order Details - </u></h1>
+	</div>
+	<br />
+	<!-- Shopping Cart -->
+	<div id="section-cart">
+		<div class="row mt-5">
+			<div class="column-5">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.OrderId)
+							</th>
+							<td> @Model.OrderId</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.SubTotal)
+							</th>
+							<td>£ @Model.SubTotal</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.ShippingCharges)
+							</th>
+							<td>£ @Model.ShippingCharges</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.TotalAmount)
+							</th>
+							<td>£ @Model.TotalAmount</td>
+						</tr>
+						<tr>
+							<th>
+								Order Date
+							</th>
+							<td> @Model.Datetime</td>
+						</tr>
+						<tr>
+							<th>
+								Status
+							</th>
+							<td> @Model.status</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="column-5">
+				<table class="table table-bordered">
+					<tbody>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.FirstName)
+							</th>
+							<td>  @Model.FirstName</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.LastName)
+							</th>
+							<td> @Model.LastName</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.Address)
+							</th>
+							<td> @Model.Address</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.City)
+							</th>
+							<td> @Model.City</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.Country)
+							</th>
+							<td> @Model.Country</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.PostalCode)
+							</th>
+							<td> @Model.PostalCode</td>
+						</tr>
+						<tr>
+							<th>
+								@Html.DisplayNameFor(model => model.Phone)
+							</th>
+							<td> @Model.Phone</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>	<br /><br />
+		<div class="row mb-5">
+			<table class="table table-bordered">
+				<thead>
+					<tr class="main-hading">
+						<th>PRODUCT</th>
+						<th>NAME</th>
+						<th class="text-center">PRICE</th>
+						<th class="text-center">QUANTITY</th>
+						<th class="text-center">TOTAL PRICE</th>
+						<th class="text-center">ACTION</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach (var item in Model.OrderItems)
+					{
+						<tr>
+							<td class="image" data-title="No"><img src="@item.ProductImage" style="width:80px" alt="@item.ProductName"></td>
+							<td class="product-des" data-title="Description">
+								<p class="product-name"><a href="/Product/Detail?Id=@item.Id">@item.ProductName</a></p>
+								<p class="product-des">Category: @item.Category</p>
+							</td>
+							<td class="price" data-title="Price"><span>£ @item.Price </span></td>
+							<td class="qty" data-title="Qty"><span>@item.Quantity </span></td>
+							<td class="total-amount" data-title="Total"><span>£ @item.SubTotal</span></td>
+							<td class="action" data-title="Remove">
+								<a href="/Product/Detail?Id=@item.ProductId" title="View Product"><i class="fa fa-bars" aria-hidden="true"></i></a>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+	<!--/ End Shopping Cart -->
+</section>

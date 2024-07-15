@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="card ">
+    <div class="card-header ">
+        <h4 class="card-title">Users Settings</h4>
+    </div>
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-md-12 mt-2" id="UsersList">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="addUsersModal" class="modal fade show" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+</div>
+
+@section Scripts{
+    <script src="~/Plugins/Users.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Users.bindUsers();
+        });
+    </script>
+}

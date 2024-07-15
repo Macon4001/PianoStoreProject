@@ -1,0 +1,74 @@
+﻿.upload-btn-wrapper {
+    position: relative !important;
+    overflow: hidden !important;
+    display: inline-block !important;
+}
+
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        opacity: 0 !important;
+    }
+
+
+
+.cropit-preview {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-top: 7px;
+    width: 300px;
+    height: 300px;
+    margin: auto !important;
+}
+
+.cropit-preview-image-container {
+    cursor: move;
+}
+
+.image-size-label {
+    margin-top: 10px;
+}
+
+input {
+    display: block;
+}
+
+.export {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+.slider {
+    -webkit-appearance: none;
+    width: 70%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin:auto;
+}
+
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #fc5b79;
+        cursor: pointer;
+    }
+
+    .slider::-moz-range-thumb {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background: #fc5b79;
+        cursor: pointer;
+    }

@@ -1,0 +1,67 @@
+﻿@model PianoStoreProject.Models.CategoriesViewModel
+
+@{
+    ViewData["Title"] = "AddCategories";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="row">
+	<div class="col-md-10 ml-auto mr-auto">
+		<form asp-action="AddOrUpdateCategory" asp-controller="Manage" data-ajax="true" data-ajax-method="POST" data-ajax-success="Category.initSuccess" novalidate="novalidate" enctype="multipart/form-data">
+			<div class="card ">
+				<div class="card-header ">
+					<h4 class="card-title">@ViewBag.PageTitle</h4>
+				</div>
+				<div class="card-body ">
+					<div class="row">
+						<div class="col-md-12">
+                            <div class="form">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <input type="hidden" asp-for="Id" />
+                                <div class="form-group row">
+                                    <label asp-for="CategoryName" class="control-label col-md-2"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="CategoryName" class="form-control" />
+                                        <span asp-validation-for="CategoryName" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Description" class="control-label col-md-2"></label>
+                                    <div class="col-md-10">
+                                        <textarea asp-for="Description" class="form-control" maxlength="95"></textarea>
+                                        <span asp-validation-for="Description" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="CategoryImage" class="col-md-2 col-form-label"></label>
+                                    <div class="col-md-10">
+                                        <input accept="image/*" type="file" id="input-file-now-custom-1" class="dropify" asp-for="CategoryImage" data-default-file="@Model.CategoryImageUrl" />
+                                        <span asp-validation-for="CategoryImage" class="text-danger"></span>
+                                        <span class="text-info">Please upload the image with a size of (500 x 500 pixels) for better results.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
+                                        <input type="submit" value="Save" class="btn btn-primary btn-round" />
+                                        <a href="/Manage/Categories" class="btn btn-default btn-round">Back</a>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+@section Scripts{
+<script src="~/Plugins/Category.js"></script>
+<script type="text/javascript">
+	$(function () {
+		$dropify = $('.dropify').dropify();
+	});
+</script>
+<partial name="_ValidationScriptsPartial" />
+}

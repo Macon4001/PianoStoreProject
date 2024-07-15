@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "Categories";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<script src="~/Plugins/Category.js"></script>
+
+<div class="card ">
+    <div class="card-header">
+        <h4 class="card-title">Categories</h4>
+        <hr>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <a href="/Manage/AddCategories" class="btn btn-outline-primary btn-round"><i class="fa fa-plus"></i> Add New</a>
+            </div>
+            <div class="col-md-12 mt-2" id="section-categories">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        Category.initBindCategory();
+    });
+</script>
+

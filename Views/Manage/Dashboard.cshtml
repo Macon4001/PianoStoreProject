@@ -1,0 +1,138 @@
+﻿@using PianoStoreProject.Repositories
+@inject IProductRepository ProductProvider
+@inject ICategoryRepository CategoryProvider
+@inject ICheckOutRepository CheckoutProvider
+@{
+	ViewData["Title"] = "Dashboard";
+	Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<script src="~/Plugins/Manage.js"></script>
+<div class="row">
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-body ">
+				<div class="row">
+					<div class="col-5 col-md-4">
+						<div class="icon-big text-center icon-danger">
+							<i class="nc-icon nc-book-bookmark text-danger"></i>
+						</div>
+					</div>
+					<div class="col-7 col-md-8">
+						<div class="numbers">
+							<p class="card-category">Categories</p>
+							<p class="card-title">@CategoryProvider.GetAllCategories().Count()
+							<p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer ">
+				<hr>
+				<div class="stats">
+					<i class="nc-icon nc-check-2"></i> Updated
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-body ">
+				<div class="row">
+					<div class="col-5 col-md-4">
+						<div class="icon-big text-center icon-warning">
+							<i class="nc-icon nc-box text-warning"></i>
+						</div>
+					</div>
+					<div class="col-7 col-md-8">
+						<div class="numbers">
+							<p class="card-category">Products</p>
+							<p class="card-title">@ProductProvider.GetAllProducts().Count()
+							<p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer ">
+				<hr>
+				<div class="stats">
+					<i class="nc-icon nc-check-2"></i> Updated
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-body ">
+				<div class="row">
+					<div class="col-5 col-md-4">
+						<div class="icon-big text-center icon-warning">
+							<i class="nc-icon nc-layout-11 text-primary"></i>
+						</div>
+					</div>
+					<div class="col-7 col-md-8">
+						<div class="numbers">
+							<p class="card-category">New Orders</p>
+							<p class="card-title">@CheckoutProvider.GetNewUserOrders().Count()
+							<p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer ">
+				<hr>
+				<div class="stats">
+					<i class="nc-icon nc-check-2"></i> Updated
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-body ">
+				<div class="row">
+					<div class="col-5 col-md-4">
+						<div class="icon-big text-center icon-warning">
+							<span class="nc-icon nc-single-copy-04 text-success"></span>
+						</div>
+					</div>
+					<div class="col-7 col-md-8">
+						<div class="numbers">
+							<p class="card-category"> Completed</p>
+							<p class="card-title">@CheckoutProvider.GetCompletedOrders().Count()
+							<p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer ">
+				<hr>
+				<div class="stats">
+					<i class="nc-icon nc-check-2"></i> Updated
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="row">
+	<div class="col-md-12">
+		<div class="card ">
+			<div class="card-header ">
+				<h4 class="card-title">ORDERS IN PROCESS</h4><hr />
+			</div>
+			<div class="card-body ">
+				<div class="row">
+					<div class="col-md-12 mt-2" id="section-orders">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		Manage.initNewOrders();
+	});
+</script>

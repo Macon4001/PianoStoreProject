@@ -1,0 +1,29 @@
+﻿@model PianoStoreProject.Models.ProductsFilterViewModel
+@{
+	ViewData["Title"] = "Products";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<input type="hidden" asp-for="CategoryId" id="txtSubCategoryId" />
+<input type="hidden" asp-for="PageNumber" id="txtPageNumber" value="1" />
+<center>
+<h2><u>@ViewBag.CategoryName</u> </h2>
+</center>
+<br />
+<main class="products" id="section-products">
+
+
+
+</main>
+<br />
+<center>
+	<a href="Javascript:void(0);" class="btn3 hide" id="btnLoadMore" onclick="Store.initLoadMore();">
+		Load More
+	</a>
+</center>
+
+@section Scripts{
+<script src="~/js/jquery.bootpag.min.js"></script>
+<script src="~/Plugins/Store.js"></script>
+}

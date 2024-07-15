@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+@{
+	ViewData["Title"] = "Profile";
+	ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+
+<link rel="stylesheet" href="~/css/identity.css" />
+<section class="container-SI">
+	<div class="form-box">
+		<img src="~/assets/Photos/logo3.jpg" class="Frost Sounds" />
+		<div class="button-box">
+			<h4 class="text-center">@ViewData["Title"]</h4><br />
+			<partial name="_StatusMessage" model="Model.StatusMessage" />
+			<hr /><br />
+			<form id="profile-form" method="post" class="input-group" id="login">
+				<div asp-validation-summary="All" class="text-danger"></div>
+				<input asp-for="Username" class="form-control" disabled class="input-field1" placeholder="Enter Username" />
+				<br />
+				<input asp-for="Input.PhoneNumber" class="input-field1" placeholder="Enter your Phone Number" />
+				<br />
+				<button id="update-profile-button" type="submit" class="btn">Save</button>
+				<br />
+				<p>
+					<a id="forgot-password" asp-page="./ChangePassword">Change your Password</a>
+				</p>
+				<br />
+				<p>
+					<a id="forgot-password" asp-page="./Email">Change your Email</a>
+				</p>
+			</form>
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}

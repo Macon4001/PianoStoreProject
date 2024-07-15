@@ -1,0 +1,56 @@
+﻿@model PianoStoreProject.Models.ManageUserDto
+
+@{
+    ViewData["Title"] = "Role";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+<script src="~/Plugins/Users.js"></script>
+<div class="card ">
+    <div class="card-header">
+        <h4 class="card-title">Users</h4>
+        <hr>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 mt-2" id="">
+
+                <div class="row">
+                    <div class="col-md-12 margin-b-30" id="section-categories" style="margin-top:20px;">
+
+                        <form asp-action="UpdateUserRole" asp-controller="Manage" data-ajax="true" data-ajax-method="POST" data-ajax-success="Users.initUserSuccess">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form">
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.UserId)
+                                        <div class="form-group row">
+                                            @Html.LabelFor(model => model.RoleType, htmlAttributes: new { @class = "col-md-2 col-form-label" })
+                                            <div class="col-md-10">
+                                                @Html.DropDownListFor(model => model.RoleType, new SelectList(Model.Roles, "Role", "Role"), "--Select User Role--", new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.RoleType, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-10">
+
+                                                <input type="submit" value="Save" class="btn btn-primary btn-round" />
+                                                <a href="/Manage/Users" class="btn btn-default btn-round">Back</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

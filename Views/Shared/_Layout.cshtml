@@ -1,0 +1,195 @@
+﻿@using PianoStoreProject.Repositories
+@inject IUsersRepository UserProvider
+@inject ICartRepository CartProvider
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="apple-touch-icon" sizes="76x76" href="~/favicon.ico" />
+	<link rel="icon" type="image/png" href="~/favicon.ico" />
+	<link href="~/favicon.ico" rel="apple-touch-icon">
+	<title>@ViewData["Title"] - FROST SOUNDS</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://use.fontawesome.com/99202a12ad.js"></script>
+	<script src="~/js/jquery-1.12.4.min.js"></script>
+	<script src="~/js/jquery.validate.unobtrusive.js"></script>
+	<link rel="stylesheet" href="~/assets/styles.css" />
+	<link rel="stylesheet" href="~/css/site.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet" />
+	<link href="~/dashboard/assets/css/jquery.toast.css" rel="stylesheet" />
+	<link href="~/dashboard/assets/confirm/jquery-confirm.css" rel="stylesheet" />
+</head>
+<body>
+	<section class="container">
+		<div class="navbar" id="top">
+			<div class="logo">
+				<a href="/Home/Index">
+					<img src="~/assets/Photos/logo3.jpg">
+				</a>
+			</div>
+			<nav>
+				<ul>
+					<li>
+						<a href="/Home/Index">Home</a>
+					</li>
+					<li>
+						<a href="/Home/Categories">Browse Categories</a>
+					</li>
+					<li>
+						<a href="#bottom">About</a>
+					</li>
+					<li>
+						<a href="/Home/Contact">Contact</a>
+					</li>
+					@if (User.Identity.IsAuthenticated)
+					{
+						<li class="dropdown">
+							<i class="ti-user"></i><a href="Javascript:void(0);" data-toggle="dropdown"> @UserProvider.GetUserFullName(User.Identity.Name) <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+
+							<ul class="dropdown-menu">
+								<li>
+									<a href="Javascript:void(0);">
+										Customer Id: <b>@UserProvider.GetCustomerID()</b>
+									</a>
+								</li>
+								@if (User.IsInRole("Administrator"))
+								{
+									<li>
+										<a href="/Manage/Dashboard">
+											Dashboard
+										</a>
+									</li>
+								}
+								<li>
+									<a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+										Settings
+									</a>
+								</li>
+								<li>
+									<a href="/Cart/Orders">
+										My Orders
+									</a>
+								</li>
+								<li>
+									<a href="/cart">
+										Shopping cart
+									</a>
+								</li>
+								<li>
+									<a href="javascript:document.getElementById('logoutForm').submit()">
+										Logout
+										<form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"></form>
+									</a>
+								</li>
+							</ul>
+						</li>
+					}
+					else
+					{
+						<li>
+							<a asp-area="Identity" asp-page="/Account/Login">Sign in</a>
+						</li>
+					}
+
+
+
+					<li>
+						<a href="/Cart" class="last">
+							<i class="fa-2x fa fa-shopping-cart"></i>
+						</a>
+					</li>
+					<li>
+						<div id="modeSwitcher">
+							<input type="checkbox" class="checkbox" id="chk" />
+							<label class="label" for="chk">
+								<i class="fas fa-moon"></i>
+								<div class="ball"></div>
+							</label>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!-- Font Container-->
+		<div class="font-container">
+			<div class="button-2">
+				<span class="btn-2" onclick="document.getElementsByClassName('text')[i].style.fontSize = '1rem'">A</span>
+				<span class="btn-2" onclick="document.getElementsByClassName('text')[i].style.fontSize = '1.25rem'">A</span>
+				<span class="btn-2" onclick="document.getElementsByClassName('text')[i].style.fontSize = '1.45rem'">A</span>
+				<!--adding a selective class for the selected item-->
+				<script>
+					let buttons = document.querySelector('.button-2');
+
+					var btn = buttons.querySelectorAll('.btn-2');
+					var text = document.getElementsByClassName('text');
+
+					for (var i = 0; i < btn.length; i++) {
+					  btn[i].addEventListener('click', function() {
+						let current = document.getElementsByClassName("active");
+						for (var i = 0; i < text.length; i++) {
+
+						  console.log(text.length);
+						  text[0].classList = text[0].classList.replace("active", "");
+
+						  this.classList += "active";
+						}
+
+					  })
+					}
+				</script>
+			</div>
+		</div>
+	</section>
+	@RenderBody()
+	<footer>
+		<!--PAYMENT-->
+		<section class="payments">
+			<div class="small-container">
+				<div class="row">
+					<div class="footer-column-3" id="bottom">
+						<h1>About us</h1>
+						<p>Founded in 2008 with as a joint venture with bossendoffer, Frost sound has quickly grown to be one of the top luxury grand piano providers. Utilising state of the art logistics to gaurentee delivery in a fast and effective manor. Here at Frost sounds we pride ourselves on the quality of our services. </p>
+					</div>
+					<div class="footer-column-2">
+						<ul>
+							<li>
+								<a href="/Home/Index">Home</a>
+							</li>
+							<li>
+								<a href="/Home/Categories">Browse</a>
+							</li>
+							<li>
+								<a href="#top">Top</a>
+							</li>
+							<li>
+								<a href="">Sign in</a>
+							</li>
+						</ul>
+						<br>
+						<p>Twitter:@@FrostSounds</p>
+						<p>Instagram:@@FrostSounds</p>
+						<p>Email:Support@@FrostSounds</p>
+					</div>
+					<div class="footer-column-1">
+						<img class="payment-img" src="~/assets/Photos/paypal.jfif" alt="https://www.pinterest.co.uk/pin/627267054343487411/">
+						<img class="payment-img" src="~/assets/Photos/mastercard.jfif" alt="https://www.mastercardcenter.org/">
+						<img class="payment-img" src="~/assets/Photos/visa.jfif" alt="https://www.mastercardcenter.org/">
+					</div>
+				</div>
+			</div>
+		</section>
+		<article></article>
+	</footer>
+	<script src="~/assets/Javascript/darkmode.js"></script>
+
+	<script src="~/dashboard/assets/js/plugins/toastr.js"></script>
+	<script src="~/dashboard/assets/js/plugins/jquery.toast.js"></script>
+	<script src="~/dashboard/assets/js/plugins/sweetalert2.min.js"></script>
+	<script src="~/dashboard/assets/confirm/jquery-confirm.js"></script>
+	<script src="~/Plugins/Base.js"></script>
+	@RenderSection("Scripts", required: false)
+</body>
+</html>

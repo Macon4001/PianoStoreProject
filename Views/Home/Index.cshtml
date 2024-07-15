@@ -1,0 +1,119 @@
+﻿@using PianoStoreProject.Repositories
+@inject INotificationRepository NotificationProvider
+@inject ICategoryRepository CategoryProvider
+@{
+	ViewData["Title"] = "Home";
+}
+
+<article class="row">
+	<div class="column-2 text text-center" id="">
+		<h1>For all of Your <br>Piano Needs </h1>
+		<p>From Bösendorfer to Yamaha and Bechstein, <br> Frost Sounds caters to all of your Grand Piano needs. </p>
+		<a href="Checkout page 2.html" class="btn">Shop Now &#8594;</a>
+	</div>
+	<div class="column-1">
+		<img src="~/assets/Photos/Grand-piano.png" alt="https://www.pianodistributors.com/new-piano/280-vc/">
+	</div>
+</article>
+<!------ featured products ------>
+<section class="listing">
+	@{
+		var notifications = NotificationProvider.GetActiveNotifications();
+	}
+	@if (notifications != null)
+		if (notifications.Any())
+		{
+			<div class="row">
+				<div class="alert alert-success alert-dismissible show" role="alert" style="width:100%;">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true" class="text-success">&times;</span>
+					</button>
+					@*<h4 class="alert-heading"><strong>Latest News!</strong></h4>*@
+					<marquee>
+						@foreach (var msg in notifications)
+						{
+							<span style="padding-left:10%">
+								@Html.Raw(msg.NotificationMessage)
+							</span>
+						}
+					</marquee>
+				</div>
+			</div>
+		}
+	<br />
+
+	<div class="feat_title text" id="">
+		<h1>- Featured -</h1>
+	</div>
+	@{
+		int i = 1;
+	}
+	@foreach (var p_item in CategoryProvider.GetPopularCategories())
+	{
+		String classCss = "centered" + (i++);
+		<div class="column-4">
+			<img src="@p_item.CategoryImageUrl" alt="@p_item.CategoryName">
+			<a href="/Home/Products?Id=@p_item.Id" class="@classCss">@p_item.CategoryName</a>
+		</div>
+	}
+</section>
+<!-- Sale -->
+<!--section class="sale"-->
+<article class="row3">
+	<div class="column-5">
+		<img src="~/assets/Photos/yamaha-1.jpg" alt="https://yamahapianocenter.dk/flygel/akustisk-flygel/cx-serien/c6x/">
+	</div>
+	<div class="column-2 text  text-center" id="">
+		<p> Available exclucively at Frost Sounds</p>
+		<h1>Yamaha C6X Grand Piano</h1>
+		<p>The Yamaha C6X is capable of deep, forceful reverberation with a powerful 7-foot frame. Impeccable sensitivity to the player's nuances, this elegant piano takes the player's intentions and reflects them into the depth and projection of the music.</p>
+
+	</div>
+</article>
+<!--/section-->
+<!--reviews-->
+<section class="reviews">
+	<div class="small-container">
+		<div class="row4">
+			<div class="column-6 text" id="">
+				<i class="fa fa-quote-left" aria-hidden="true"></i>
+				<p>love this product, it came as adverised brand new with packaging... would 100% recommend this company for aspiring pianists</p>
+				<div class="ratings">
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+				</div>
+				<img class="profile-1" src="~/assets/Photos/profile-1.jpeg" alt="https://www.pexels.com/zh-cn/photo/4890733/">
+				<h3> Daniel Kuria</h3>
+			</div>
+			<div class="column-6 text" id="">
+				<i class="fa fa-quote-left" aria-hidden="true"></i>
+				<p>Fast shipping...the customer service was amazing when I put in the wrong adress they sorted it out quickly</p>
+				<div class="ratings">
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+				</div>
+				<img class="profile-1" src="~/assets/Photos/profile-2.jpeg" alt="https://www.pexels.com/photo/man-looking-to-his-right-2741701/">
+				<h3> James Juan </h3>
+			</div>
+			<div class="column-6 text" id="">
+				<i class="fa fa-quote-left" aria-hidden="true"></i>
+				<p>Best store for buying grand pianos. Got my Yamaha C6X for a great deal. Customer service was outstanding aswell</p>
+				<div class="ratings">
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star" aria-hidden="true"></i>
+					<i class="fa fa-star-half-o" aria-hidden="true"></i>
+					<i class="fa fa-star-o" aria-hidden="true"></i>
+				</div>
+				<img class="profile-1" src="~/assets/Photos/profile-3.jpeg" alt="https://www.jolie.de/leben/wochenhoroskop-so-wird-die-woche-fuer-euer-sternzeichen-vom-8-juli-bis-14-juli-200994.html">
+				<h3> Vanessa Green</h3>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,36 @@
+﻿.animate-fadeIn {
+    border: 0;
+
+    &.ng-enter{
+        -webkit-animation: fadeIn 1s;
+        -moz-animation: fadeIn 1s;
+        -ms-animation: fadeIn 1s;
+        animation: fadeIn 1s;
+}
+
+    &.ng-leave {
+        -webkit-animation: fadeOut 1s;
+        -moz-animation: fadeOut 1s;
+        -ms-animation: fadeOut 1s;
+        animation: fadeOut 1s;
+    }
+}
+
+
+.animate-bounceIn {
+    border: 0;
+
+&.ng-enter{
+     -webkit-animation: bounceIn 1s;
+     -moz-animation: bounceIn 1s;
+     -ms-animation: bounceIn 1s;
+     animation: bounceIn 1s;
+ }
+
+&.ng-leave {
+     -webkit-animation: bounceOut 1s;
+     -moz-animation: bounceOut 1s;
+     -ms-animation: bounceOut 1s;
+     animation: bounceOut 1s;
+ }
+}

@@ -1,0 +1,144 @@
+﻿@model PianoStoreProject.Models.ProductViewModel
+
+@{
+	ViewData["Title"] = "Add";
+	Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<link href="~/dashboard/assets/css/profile.css" rel="stylesheet" />
+
+<div class="col-md-10 mr-auto ml-auto">
+	<!-- Wizard container -->
+	<div class="wizard-container">
+		<div class="card card-wizard active" data-color="green" id="wizardProfile">
+			<!-- You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"  -->
+			<div class="card-header text-center">
+				<h3 class="card-title">
+					@ViewBag.PageTitle
+				</h3>
+				<h5 class="description">@ViewBag.PageTagLine</h5>
+				<div class="wizard-navigation">
+					<ul>
+						<li class="nav-item">
+							<a class="nav-link active" href="#basic" data-toggle="tab" role="tab" aria-controls="upload" aria-selected="true">
+								<i class="nc-icon nc-box"></i> Basic Details
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#photos" data-toggle="tab" role="tab" aria-controls="verify" aria-selected="true">
+								<i class="nc-icon nc-image"></i> Product Photos
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-body">
+				<div class="tab-content">
+					<div class="tab-pane show active" id="basic">
+						<div class="row">
+							<div class="col-md-12">
+								<form asp-action="AddOrUpdateProduct" asp-controller="Product" data-ajax="true" id="ProductForm" data-ajax-method="POST" novalidate="novalidate" data-ajax-success="Products.initSuccess" enctype="multipart/form-data">
+									<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+									<input asp-for="Id" type="hidden" />
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label asp-for="ProductName" class="control-label"></label>
+												<input asp-for="ProductName" class="form-control" />
+												<span asp-validation-for="ProductName" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label asp-for="CategoryId" class="control-label"></label>
+												<select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories,"Id","CategoryName"))">
+													<option value="">Select Category</option>
+												</select>
+												<span asp-validation-for="CategoryId" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label asp-for="Price" class="control-label"></label>
+												<input asp-for="Price" class="form-control" />
+												<span asp-validation-for="Price" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label asp-for="Description" class="control-label"></label>
+												<textarea asp-for="Description" class="form-control"></textarea>
+												<span asp-validation-for="Description" class="text-danger"></span>
+											</div>
+										</div>
+										<div class="col-md-3">
+											<div class="form-group">
+												<div class="form-check">
+													<label class="form-check-label">
+														<input class="form-check-input" asp-for="Recomended" type="checkbox" />
+														<span class="form-check-sign"></span>
+														@Html.DisplayNameFor(model => model.Recomended)
+													</label>
+												</div>
+											</div>
+										</div>
+										<div class="form-group row d-none">
+											<input type="submit" id="btnSubmitProduct" value="Save" class="btn btn-outline-primary waves-effect" />
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane" id="photos">
+						<div class="row">
+							<div class="col-md-12">
+								<a href="Javascript:void(0);" class="btn btn-outline-primary btn-round" onclick="Products.initAddImage();"><i class="fa fa-plus"></i> Add New</a>
+							</div>
+							<div class="col-md-12">
+								<div id="section-images">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="card-footer">
+				<div class="pull-right">
+					<input type='button' class='btn btn-primary btn-block btn-round btn-next' name='next' value='Next' />
+					<input type='button' class='btn btn-finish btn-fill btn-rose btn-wd' name='finish' onclick="Products.onFinish();" value='Finish' />
+				</div>
+				<div class="pull-left">
+					<input type='button' class='btn btn-previous btn-block btn-round' name='previous' value='Previous' />
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+	<!-- wizard container -->
+</div>
+
+<div class="modal" id="UploadImageModal">
+</div>
+
+
+<script src="~/dashboard/assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+<script src="~/Plugins/Products.js"></script>
+<script type="text/javascript">
+	$(function () {
+		demo.initWizard();
+		$('.select2').SumoSelect({
+			destroy: true,
+			placeholder: 'Select',
+			floatWidth: "100%",
+			search: true,
+			searchText: "Search...",
+			csvDispCount: 3,
+			floatWidth: 500,
+		});
+	});
+
+</script>
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<PianoStoreProject.Models.ContactViewModel>
+@{
+    ViewData["Title"] = "Emails";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="card ">
+    <div class="card-header">
+        <h4 class="card-title">Emails</h4>
+        <hr>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 mt-2">
+                 <table class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%" id="tblEmail">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Subject)
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ int i = 0;}
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @(i = i + 1)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Subject)
+                                    </td>
+                                    <td>
+                                        <a href="/Manage/Message?Id=@item.Id"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+

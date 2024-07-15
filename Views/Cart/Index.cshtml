@@ -1,0 +1,25 @@
+﻿@{
+	ViewData["Title"] = "Shopping Cart";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="listing mt-5 mb-5">
+	<div class="feat_title text" id="">
+		<h1><u> - 	<i class="fa fa-shopping-cart"></i> Shopping Cart - </u></h1>
+	</div>
+	<br />
+	<!-- Shopping Cart -->
+	<div id="section-cart">
+
+	</div>
+	<!--/ End Shopping Cart -->
+</section>
+
+@section Scripts{
+<script src="~/Plugins/Cart.js"></script>
+<script type="text/javascript">
+		$(function () {
+		Cart.initCart();
+	});
+</script>
+}

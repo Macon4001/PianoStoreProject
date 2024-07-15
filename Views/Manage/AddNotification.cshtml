@@ -1,0 +1,67 @@
+﻿@model PianoStoreProject.Models.NotificationViewModel
+
+@{
+    ViewData["Title"] = "Add Notification";
+    Layout = "~/Views/Shared/_LayoutDashboard.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 ml-auto mr-auto">
+        <form asp-action="AddOrUpdateNotification" asp-controller="Manage" data-ajax="true" data-ajax-method="POST" data-ajax-success="Notification.initSuccess">
+            <div class="card ">
+                <div class="card-header ">
+                    <h4 class="card-title">@ViewBag.PageTitle</h4>
+                </div>
+                <div class="card-body ">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <input type="hidden" asp-for="Id" />
+
+                                <div class="form-group row">
+                                    <label asp-for="NotificationMessage" class="control-label col-md-2"></label>
+                                    <div class="col-md-10">
+                                        <textarea asp-for="NotificationMessage" class="form-control"></textarea>
+                                        <span asp-validation-for="NotificationMessage" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="NotificationUrl" class="control-label col-md-2"></label>
+                                    <div class="col-md-10">
+                                        <input asp-for="NotificationUrl" class="form-control" />
+                                        <span asp-validation-for="NotificationUrl" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label asp-for="Status" class="control-label col-md-2"></label>
+                                    <div class="col-md-10">
+                                        <select asp-for="Status" class="form-control">
+                                            <option value="">Select Status</option>
+                                            <option value="Active">Active</option>
+                                            <option value="In active">In active</option>
+                                        </select>
+                                        <span asp-validation-for="Status" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-9">
+                                        <input type="submit" value="Save" class="btn btn-primary btn-round" />
+                                        <a href="/Manage/Notifications" class="btn btn-default btn-round">Back</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/Plugins/Notification.js"></script>
+}
+

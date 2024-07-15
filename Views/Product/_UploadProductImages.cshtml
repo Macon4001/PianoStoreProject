@@ -1,0 +1,54 @@
+﻿@model PianoStoreProject.Models.ProductPhotosViewModel
+
+<link rel="stylesheet" type="text/css" href="~/assets/Plugins/colorpicker/jquery.minicolors.css " />
+
+<div class="modal-dialog modal-lg" role="document">
+	<form asp-action="AddProductImages" asp-controller="Product" data-ajax="true" id="ProductImageForm" data-ajax-method="POST" novalidate="novalidate" data-ajax-success="Products.initUploadImageSuccess" enctype="multipart/form-data">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h5 class="modal-title">Add Product Images</h5>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-md-12">
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+						<input type="hidden" asp-for="ProductPhotoId" />
+						<input type="hidden" asp-for="ProductId" />
+						<div class="form-group row">
+							<label asp-for="ProductImages" class="control-label col-md-2"></label>
+							<div class="col-md-10">
+								<input accept="image/*" type="file" id="input-file-now-custom-1" class="dropify" asp-for="ProductImages" multiple="multiple" />
+								<span asp-validation-for="ProductImages" class="text-danger"></span>
+								<span class="text-info">Please upload the image with a size of (500 x 500 pixels) for better results.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer p-1">
+				<button type="submit" class="btn btn-primary btn-round">Save changes</button>
+				<button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script src="~/assets/Plugins/colorpicker/jquery.minicolors.min.js"></script>
+<script type="text/javascript">
+	$(function () {
+		 $dropify = $('.dropify').dropify();
+		 $('.demo').minicolors({
+		  animationSpeed: 50,
+		  animationEasing:'swing',
+		  changeDelay: 0,
+		  control:'hue',
+		  format:'hex',
+		  theme:'default',
+		  opacity:true,
+		 });
+	});
+</script>
+<partial name="_ValidationScriptsPartial" />

@@ -1,0 +1,74 @@
+﻿@model IEnumerable<PianoStoreProject.Models.ProductPhotosViewModel>
+
+<style>
+	div.show-image {
+		position: relative;
+	}
+
+		div.show-image:hover .deleteBtn {
+			display: block;
+		}
+
+		div.show-image .deleteBtn {
+			position: absolute;
+			top: 40%;
+			left: 40%;
+			display: none;
+		}
+
+		div.show-image:hover img {
+			opacity: 0.5;
+		}
+
+	.dot {
+		height: 25px;
+		width: 25px;
+		background-color: #bbb;
+		border-radius: 50%;
+		display: inline-block;
+	}
+</style>
+
+
+<table class="display nowrap table table-hover table-bordered" cellspacing="0" width="100%" id="tblPackages">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ImageUrl)
+			</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<tbody>
+		@{
+			int i = 0;
+		}
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@(i = i + 1)
+				</td>
+				<td>
+					<img class="img img-thumbnail" src="@item.ImageUrl" alt="Product Image" width="20%" />
+				</td>
+				<td>
+					<a href="Javascript:void(0);" title="Delete Photo" onclick="Products.initDeleteProductImage('@item.ProductPhotoId');"><i class="fa fa-trash" aria-hidden="true"></i></a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<script type="text/javascript">
+	$(function () {
+		$("#tblPackages").DataTable({
+			destroy: true,
+			aaSorting: [],
+			"ordering": false,
+			"bSort": false,
+			"bSortable": false,
+			"orderable": false,
+		})
+	});
+</script>

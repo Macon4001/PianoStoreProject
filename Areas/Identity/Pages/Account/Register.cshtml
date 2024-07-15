@@ -1,0 +1,37 @@
+﻿@page
+@model RegisterModel
+@{
+	ViewData["Title"] = "Register";
+}
+
+<link rel="stylesheet" href="~/css/identity.css" />
+<section class="container-SI">
+	<div class="form-box">
+		<img src="~/assets/Photos/logo3.jpg" class="Frost Sounds" />
+		<div class="button-box">
+			<div id="btn4">
+				<a asp-area="Identity" asp-page="/Account/Login" class="btn5"> Log-in</a>
+				<a asp-area="Identity" asp-page="/Account/Register" class="btn5"> Register</a>
+			</div>
+			<form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="input-group" id="login">
+				<div asp-validation-summary="All" class="text-danger"></div>
+				<input asp-for="Input.FirstName" class="input-field1" placeholder="Enter your First Name" />
+				<br />
+				<input asp-for="Input.LastName" class="input-field1" placeholder="Enter your Last Name" />
+				<br />
+				<input asp-for="Input.Email" class="input-field1" placeholder="Enter your Email" />
+				<br />
+				<input asp-for="Input.Password" class="input-field" placeholder="Enter your Password" />
+				<br />
+				<input asp-for="Input.ConfirmPassword" class="input-field" placeholder="Confirm your Password" />
+				<br />
+				<button type="submit" class="btn">Register</button>
+			</form>
+		</div>
+	</div>
+</section>
+
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
